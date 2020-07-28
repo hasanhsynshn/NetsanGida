@@ -1,0 +1,600 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s1="http://tempuri.org/AbstractTypes" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="DeliveryBulkEmailNewListXML_WithSpecial">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AccessToken" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FromName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FromAddress" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Replyto" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Subject" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Body" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="xmlData" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeliveryBulkEmailNewListXML_WithSpecialResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DeliveryBulkEmailNewListXML_WithSpecialResult" type="tns:DeliveryResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DeliveryResult">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Base_Result">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="DeliveryCount" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="CampaignId_Unique" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="Base_Result">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ResultCode" type="tns:ResultDesc" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="ResultDesc">
+        <s:restriction base="s:string">
+          <s:enumeration value="Success" />
+          <s:enumeration value="TokenError" />
+          <s:enumeration value="DataBaseError" />
+          <s:enumeration value="SystemError" />
+          <s:enumeration value="DeliveryError" />
+          <s:enumeration value="NoData" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="DeliveryTransactionalEmail">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AccessToken" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReplyTo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Subject" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Body" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="To" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeliveryTransactionalEmailResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DeliveryTransactionalEmailResult" type="tns:DeliveryResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeliveryTransactionalEmail_WithSpecial">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AccessToken" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FromName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FromAddress" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReplyTo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Subject" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Body" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="To" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeliveryTransactionalEmail_WithSpecialResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DeliveryTransactionalEmail_WithSpecialResult" type="tns:DeliveryResult_Tran" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DeliveryResult_Tran">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Base_Result">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="DeliveryCount" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="CampaignIdTran_Unique" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="DeliveryBulkEmailNewList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AccessToken" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Subject" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Body" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EmailList">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeliveryBulkEmailNewListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DeliveryBulkEmailNewListResult" type="tns:DeliveryResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeliveryBulkEmailNewList_WithArray">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AccessToken" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Subject" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Body" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EmailList_Array" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DeliveryBulkEmailNewList_WithArrayResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DeliveryBulkEmailNewList_WithArrayResult" type="tns:DeliveryResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeliveryBulkEmailNewList_WithSpecial">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AccessToken" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FromName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FromAddress" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Replyto" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Subject" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Body" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DataList">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeliveryBulkEmailNewList_WithSpecialResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DeliveryBulkEmailNewList_WithSpecialResult" type="tns:DeliveryResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeliveryBulkEmailSegment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AccessToken" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Subject" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Body" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Condition" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeliveryBulkEmailSegmentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DeliveryBulkEmailSegmentResult" type="tns:DeliveryResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeliveryEmail_BasketRecovery">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AccessToken" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FromName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FromAddress" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReplyTo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Subject" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Body" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BasketData">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+            <s:element minOccurs="1" maxOccurs="1" name="SendDate" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="Type" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeliveryEmail_BasketRecoveryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DeliveryEmail_BasketRecoveryResult" type="tns:DeliveryResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeliveryResult" nillable="true" type="tns:DeliveryResult" />
+      <s:element name="DeliveryResult_Tran" nillable="true" type="tns:DeliveryResult_Tran" />
+    </s:schema>
+    <s:schema targetNamespace="http://tempuri.org/AbstractTypes">
+      <s:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+      <s:complexType name="StringArray">
+        <s:complexContent mixed="false">
+          <s:restriction base="soapenc:Array">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="unbounded" name="String" type="s:string" />
+            </s:sequence>
+          </s:restriction>
+        </s:complexContent>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="DeliveryBulkEmailNewListXML_WithSpecialSoapIn">
+    <wsdl:part name="parameters" element="tns:DeliveryBulkEmailNewListXML_WithSpecial" />
+  </wsdl:message>
+  <wsdl:message name="DeliveryBulkEmailNewListXML_WithSpecialSoapOut">
+    <wsdl:part name="parameters" element="tns:DeliveryBulkEmailNewListXML_WithSpecialResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeliveryTransactionalEmailSoapIn">
+    <wsdl:part name="parameters" element="tns:DeliveryTransactionalEmail" />
+  </wsdl:message>
+  <wsdl:message name="DeliveryTransactionalEmailSoapOut">
+    <wsdl:part name="parameters" element="tns:DeliveryTransactionalEmailResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeliveryTransactionalEmail_WithSpecialSoapIn">
+    <wsdl:part name="parameters" element="tns:DeliveryTransactionalEmail_WithSpecial" />
+  </wsdl:message>
+  <wsdl:message name="DeliveryTransactionalEmail_WithSpecialSoapOut">
+    <wsdl:part name="parameters" element="tns:DeliveryTransactionalEmail_WithSpecialResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeliveryBulkEmailNewListSoapIn">
+    <wsdl:part name="parameters" element="tns:DeliveryBulkEmailNewList" />
+  </wsdl:message>
+  <wsdl:message name="DeliveryBulkEmailNewListSoapOut">
+    <wsdl:part name="parameters" element="tns:DeliveryBulkEmailNewListResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeliveryBulkEmailNewList_WithArraySoapIn">
+    <wsdl:part name="parameters" element="tns:DeliveryBulkEmailNewList_WithArray" />
+  </wsdl:message>
+  <wsdl:message name="DeliveryBulkEmailNewList_WithArraySoapOut">
+    <wsdl:part name="parameters" element="tns:DeliveryBulkEmailNewList_WithArrayResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeliveryBulkEmailNewList_WithSpecialSoapIn">
+    <wsdl:part name="parameters" element="tns:DeliveryBulkEmailNewList_WithSpecial" />
+  </wsdl:message>
+  <wsdl:message name="DeliveryBulkEmailNewList_WithSpecialSoapOut">
+    <wsdl:part name="parameters" element="tns:DeliveryBulkEmailNewList_WithSpecialResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeliveryBulkEmailSegmentSoapIn">
+    <wsdl:part name="parameters" element="tns:DeliveryBulkEmailSegment" />
+  </wsdl:message>
+  <wsdl:message name="DeliveryBulkEmailSegmentSoapOut">
+    <wsdl:part name="parameters" element="tns:DeliveryBulkEmailSegmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeliveryEmail_BasketRecoverySoapIn">
+    <wsdl:part name="parameters" element="tns:DeliveryEmail_BasketRecovery" />
+  </wsdl:message>
+  <wsdl:message name="DeliveryEmail_BasketRecoverySoapOut">
+    <wsdl:part name="parameters" element="tns:DeliveryEmail_BasketRecoveryResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeliveryBulkEmailNewListXML_WithSpecialHttpGetIn">
+    <wsdl:part name="AccessToken" type="s:string" />
+    <wsdl:part name="FromName" type="s:string" />
+    <wsdl:part name="FromAddress" type="s:string" />
+    <wsdl:part name="Replyto" type="s:string" />
+    <wsdl:part name="Subject" type="s:string" />
+    <wsdl:part name="Body" type="s:string" />
+    <wsdl:part name="xmlData" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DeliveryBulkEmailNewListXML_WithSpecialHttpGetOut">
+    <wsdl:part name="Body" element="tns:DeliveryResult" />
+  </wsdl:message>
+  <wsdl:message name="DeliveryTransactionalEmailHttpGetIn">
+    <wsdl:part name="AccessToken" type="s:string" />
+    <wsdl:part name="ReplyTo" type="s:string" />
+    <wsdl:part name="Subject" type="s:string" />
+    <wsdl:part name="Body" type="s:string" />
+    <wsdl:part name="To" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DeliveryTransactionalEmailHttpGetOut">
+    <wsdl:part name="Body" element="tns:DeliveryResult" />
+  </wsdl:message>
+  <wsdl:message name="DeliveryTransactionalEmail_WithSpecialHttpGetIn">
+    <wsdl:part name="AccessToken" type="s:string" />
+    <wsdl:part name="FromName" type="s:string" />
+    <wsdl:part name="FromAddress" type="s:string" />
+    <wsdl:part name="ReplyTo" type="s:string" />
+    <wsdl:part name="Subject" type="s:string" />
+    <wsdl:part name="Body" type="s:string" />
+    <wsdl:part name="To" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DeliveryTransactionalEmail_WithSpecialHttpGetOut">
+    <wsdl:part name="Body" element="tns:DeliveryResult_Tran" />
+  </wsdl:message>
+  <wsdl:message name="DeliveryBulkEmailNewList_WithArrayHttpGetIn">
+    <wsdl:part name="AccessToken" type="s:string" />
+    <wsdl:part name="Subject" type="s:string" />
+    <wsdl:part name="Body" type="s:string" />
+    <wsdl:part name="EmailList_Array" type="s1:StringArray" />
+  </wsdl:message>
+  <wsdl:message name="DeliveryBulkEmailNewList_WithArrayHttpGetOut">
+    <wsdl:part name="Body" element="tns:DeliveryResult" />
+  </wsdl:message>
+  <wsdl:message name="DeliveryBulkEmailSegmentHttpGetIn">
+    <wsdl:part name="AccessToken" type="s:string" />
+    <wsdl:part name="Subject" type="s:string" />
+    <wsdl:part name="Body" type="s:string" />
+    <wsdl:part name="Condition" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DeliveryBulkEmailSegmentHttpGetOut">
+    <wsdl:part name="Body" element="tns:DeliveryResult" />
+  </wsdl:message>
+  <wsdl:portType name="EmailDeliverySoap">
+    <wsdl:operation name="DeliveryBulkEmailNewListXML_WithSpecial">
+      <wsdl:input message="tns:DeliveryBulkEmailNewListXML_WithSpecialSoapIn" />
+      <wsdl:output message="tns:DeliveryBulkEmailNewListXML_WithSpecialSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeliveryTransactionalEmail">
+      <wsdl:input message="tns:DeliveryTransactionalEmailSoapIn" />
+      <wsdl:output message="tns:DeliveryTransactionalEmailSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeliveryTransactionalEmail_WithSpecial">
+      <wsdl:input message="tns:DeliveryTransactionalEmail_WithSpecialSoapIn" />
+      <wsdl:output message="tns:DeliveryTransactionalEmail_WithSpecialSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeliveryBulkEmailNewList">
+      <wsdl:input message="tns:DeliveryBulkEmailNewListSoapIn" />
+      <wsdl:output message="tns:DeliveryBulkEmailNewListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeliveryBulkEmailNewList_WithArray">
+      <wsdl:input message="tns:DeliveryBulkEmailNewList_WithArraySoapIn" />
+      <wsdl:output message="tns:DeliveryBulkEmailNewList_WithArraySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeliveryBulkEmailNewList_WithSpecial">
+      <wsdl:input message="tns:DeliveryBulkEmailNewList_WithSpecialSoapIn" />
+      <wsdl:output message="tns:DeliveryBulkEmailNewList_WithSpecialSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeliveryBulkEmailSegment">
+      <wsdl:input message="tns:DeliveryBulkEmailSegmentSoapIn" />
+      <wsdl:output message="tns:DeliveryBulkEmailSegmentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeliveryEmail_BasketRecovery">
+      <wsdl:input message="tns:DeliveryEmail_BasketRecoverySoapIn" />
+      <wsdl:output message="tns:DeliveryEmail_BasketRecoverySoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="EmailDeliveryHttpGet">
+    <wsdl:operation name="DeliveryBulkEmailNewListXML_WithSpecial">
+      <wsdl:input message="tns:DeliveryBulkEmailNewListXML_WithSpecialHttpGetIn" />
+      <wsdl:output message="tns:DeliveryBulkEmailNewListXML_WithSpecialHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeliveryTransactionalEmail">
+      <wsdl:input message="tns:DeliveryTransactionalEmailHttpGetIn" />
+      <wsdl:output message="tns:DeliveryTransactionalEmailHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeliveryTransactionalEmail_WithSpecial">
+      <wsdl:input message="tns:DeliveryTransactionalEmail_WithSpecialHttpGetIn" />
+      <wsdl:output message="tns:DeliveryTransactionalEmail_WithSpecialHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeliveryBulkEmailNewList_WithArray">
+      <wsdl:input message="tns:DeliveryBulkEmailNewList_WithArrayHttpGetIn" />
+      <wsdl:output message="tns:DeliveryBulkEmailNewList_WithArrayHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeliveryBulkEmailSegment">
+      <wsdl:input message="tns:DeliveryBulkEmailSegmentHttpGetIn" />
+      <wsdl:output message="tns:DeliveryBulkEmailSegmentHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="EmailDeliverySoap" type="tns:EmailDeliverySoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="DeliveryBulkEmailNewListXML_WithSpecial">
+      <soap:operation soapAction="http://tempuri.org/DeliveryBulkEmailNewListXML_WithSpecial" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeliveryTransactionalEmail">
+      <soap:operation soapAction="http://tempuri.org/DeliveryTransactionalEmail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeliveryTransactionalEmail_WithSpecial">
+      <soap:operation soapAction="http://tempuri.org/DeliveryTransactionalEmail_WithSpecial" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeliveryBulkEmailNewList">
+      <soap:operation soapAction="http://tempuri.org/DeliveryBulkEmailNewList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeliveryBulkEmailNewList_WithArray">
+      <soap:operation soapAction="http://tempuri.org/DeliveryBulkEmailNewList_WithArray" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeliveryBulkEmailNewList_WithSpecial">
+      <soap:operation soapAction="http://tempuri.org/DeliveryBulkEmailNewList_WithSpecial" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeliveryBulkEmailSegment">
+      <soap:operation soapAction="http://tempuri.org/DeliveryBulkEmailSegment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeliveryEmail_BasketRecovery">
+      <soap:operation soapAction="http://tempuri.org/DeliveryEmail_BasketRecovery" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="EmailDeliverySoap12" type="tns:EmailDeliverySoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="DeliveryBulkEmailNewListXML_WithSpecial">
+      <soap12:operation soapAction="http://tempuri.org/DeliveryBulkEmailNewListXML_WithSpecial" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeliveryTransactionalEmail">
+      <soap12:operation soapAction="http://tempuri.org/DeliveryTransactionalEmail" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeliveryTransactionalEmail_WithSpecial">
+      <soap12:operation soapAction="http://tempuri.org/DeliveryTransactionalEmail_WithSpecial" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeliveryBulkEmailNewList">
+      <soap12:operation soapAction="http://tempuri.org/DeliveryBulkEmailNewList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeliveryBulkEmailNewList_WithArray">
+      <soap12:operation soapAction="http://tempuri.org/DeliveryBulkEmailNewList_WithArray" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeliveryBulkEmailNewList_WithSpecial">
+      <soap12:operation soapAction="http://tempuri.org/DeliveryBulkEmailNewList_WithSpecial" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeliveryBulkEmailSegment">
+      <soap12:operation soapAction="http://tempuri.org/DeliveryBulkEmailSegment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeliveryEmail_BasketRecovery">
+      <soap12:operation soapAction="http://tempuri.org/DeliveryEmail_BasketRecovery" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="EmailDeliveryHttpGet" type="tns:EmailDeliveryHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="DeliveryBulkEmailNewListXML_WithSpecial">
+      <http:operation location="/DeliveryBulkEmailNewListXML_WithSpecial" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeliveryTransactionalEmail">
+      <http:operation location="/DeliveryTransactionalEmail" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeliveryTransactionalEmail_WithSpecial">
+      <http:operation location="/DeliveryTransactionalEmail_WithSpecial" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeliveryBulkEmailNewList_WithArray">
+      <http:operation location="/DeliveryBulkEmailNewList_WithArray" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeliveryBulkEmailSegment">
+      <http:operation location="/DeliveryBulkEmailSegment" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="EmailDelivery">
+    <wsdl:port name="EmailDeliverySoap" binding="tns:EmailDeliverySoap">
+      <soap:address location="https://webservice.message34.com/Emaildelivery.asmx" />
+    </wsdl:port>
+    <wsdl:port name="EmailDeliverySoap12" binding="tns:EmailDeliverySoap12">
+      <soap12:address location="https://webservice.message34.com/Emaildelivery.asmx" />
+    </wsdl:port>
+    <wsdl:port name="EmailDeliveryHttpGet" binding="tns:EmailDeliveryHttpGet">
+      <http:address location="https://webservice.message34.com/Emaildelivery.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

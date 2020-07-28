@@ -1,0 +1,56 @@
+﻿@model NetsanGida.Model.Comment
+
+@{
+    ViewBag.Title = "Yorum Detay";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="content-wrapper">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Yorum Detayı</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="/Admin/Home/Index">Anasayfa</a></li>
+                        <li class="breadcrumb-item active">Yorum Detayı</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="content">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Şikayet Detayı</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="row pb-5">
+                            <div class="col-2"><strong>Başlık</strong></div><div class="col-10">@Model.Title</div>
+                            <div class="col-2"><strong>Email</strong></div><div class="col-10">@Model.Mail</div>
+                            <div class="col-2"><strong>Telefon</strong></div><div class="col-10">@Model.Phone</div>
+                            <div class="col-2"><strong>Yorum</strong></div><div class="col-10">@Model.Description</div>
+                            <br /><br />
+                            <div class="col-2"><strong>Puan</strong></div><div class="col-10">@Model.Score</div>
+                            <div class="col-2"><strong>Onay Durumu</strong></div><div class="col-10">@(Model.IsApprove ? Html.Raw("<a class='text-success'>Onaylandı</a>") : Html.Raw("<a class='text-danger'>Onaylanmadı</a>"))</div>
+                            <div class="col-2"><strong>Tarih</strong></div><div class="col-10">@Model.CreateDate</div>
+
+                            <a class="btn btn-warning mt-5 mr-3" href="/Admin/Comment/List">Listeye Dön</a>
+
+                            @if (Model.IsApprove)
+                            {
+                                <a class="btn btn-danger mt-5 mr-3" href="/Admin/Comment/RemoveApproveComment?id=@Model.CommentId&isApprove=false">Onaylanmadı Olarak Güncelle</a> }
+                            else
+                            {
+                                <a class="btn btn-success mt-5 mr-3" href="/Admin/Comment/ApproveComment?id=@Model.CommentId&isApprove=true">Onaylandı Olarak Güncelle</a>}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>    

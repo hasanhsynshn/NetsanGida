@@ -1,0 +1,95 @@
+﻿
+@{
+    ViewBag.Title = "Anasayfa";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+    <div class="content-wrapper">
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0 text-dark">Anasayfa</h1>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-3 col-6">
+                        <div class="small-box bg-info">
+                            <div class="inner">
+                                <h3>@*@ViewBag.UserCount*@</h3>
+                                <p>Yorum</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-bag"></i>
+                            </div>
+                            <a href="/Admin/Comment/List" class="small-box-footer">Listeye Git <i class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-6">
+                        <div class="small-box bg-success">
+                            <div class="inner">
+                                <h3>@*@ViewBag.SikayetCount*@</h3>
+
+                                <p>Duyuru</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-stats-bars"></i>
+                            </div>
+                            <a href="/Admin/Announcement/List" class="small-box-footer">Listeye Git <i class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-6">
+                        <div class="small-box bg-warning">
+                            <div class="inner">
+                                <h3>@*@ViewBag.KategoriCount*@</h3>
+
+                                <p>Kategori</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-person-add"></i>
+                            </div>
+                            <a href="/Admin/Category/List" class="small-box-footer">Listeye Git <i class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-6">
+                        <div class="small-box bg-danger">
+                            <div class="inner">
+                                <h3>@*@ViewBag.BlogCount*@</h3>
+                                <p>Ürün</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-pie-graph"></i>
+                            </div>
+                            <a href="/Admin/Product/List" class="small-box-footer">Listeye Git <i class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                @*<div class="row">
+                    <section class="col-lg-12 connectedSortable">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">
+                                    <i class="fas fa-chart-pie mr-1"></i>
+                                    Günlük Yeni Firma
+                                </h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="tab-content p-0">
+                                    <div class="chart tab-pane active" id="revenue-chart"
+                                         style="position: relative; height: 300px;">
+                                        <canvas id="revenue-chart-canvas" height="300" style="height: 300px;"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>*@
+            </div>
+        </section>
+    </div>
+

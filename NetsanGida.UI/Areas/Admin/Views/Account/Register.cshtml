@@ -1,0 +1,106 @@
+﻿@model NetsanGida.UI.Models.RegisterViewModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>NETSAN GIDA | Kayıt Ol</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="~/Areas/Admin/AdminLTE-master/plugins/fontawesome-free/css/all.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- icheck bootstrap -->
+    <link rel="stylesheet" href="~/Areas/Admin/AdminLTE-master/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/Areas/Admin/AdminLTE-master/dist/css/adminlte.min.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+</head>
+<body class="hold-transition register-page">
+    <div class="register-box">
+        <div class="register-logo">
+            <a href="#"><b>Netsan</b>GIDA</a>
+        </div>
+
+        <div class="card">
+            <div class="card-body register-card-body">
+                <p class="login-box-msg">Yeni Üye Kaydı</p>
+                @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <hr />
+                    @Html.ValidationSummary("", new { @class = "text-danger" })
+                    <div class="input-group mb-3">
+                        @Html.TextBoxFor(m => m.NameSurname, new { @class = "form-control", placeholder = "Ad - Soyad" })
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-user"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        @Html.TextBoxFor(m => m.TCKN, new { @class = "form-control", placeholder = "TC Kimlik No" })
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-user"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", placeholder = "Telefon" })
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-phone-alt"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Email" })
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-envelope"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Şifre" })
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", placeholder = "Şifre Tekrar" })
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+
+                        <input type="submit" class="btn btn-primary btn-block" value="Kaydet" />
+                    </div>
+                }
+                <a href="/Admin/Account/Login" class="text-center">Zaten üyeyim</a>
+            </div>
+            <!-- /.form-box -->
+        </div><!-- /.card -->
+    </div>
+    <!-- /.register-box -->
+    <!-- jQuery -->
+    <script src="~/Areas/Admin/AdminLTE-master/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="~/Areas/Admin/AdminLTE-master/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/Areas/Admin/AdminLTE-master/dist/js/adminlte.min.js"></script>
+</body>
+</html>
