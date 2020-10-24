@@ -38,6 +38,9 @@
                             <thead>
                                 <tr>
                                     <th>
+                                        Ad - Soyad
+                                    </th>
+                                    <th>
                                         Başlık
                                     </th>
                                     <th>
@@ -47,8 +50,8 @@
                                         Telefon
                                     </th>
                                     <th>
-                                        Puan
-                                    </th>                                   
+                                        Ürün Adı
+                                    </th>                                  
                                     <th></th>
                                 </tr>
                             </thead>
@@ -56,6 +59,10 @@
                                 <tr>
                                 @foreach (var item in Model)
                                 {
+                                    var urun = NetsanGida.Bll.bProduct.GetById(item.ProductId.Value);
+                                     <td>
+                                         @Html.DisplayFor(modelItem => item.NameSurname)
+                                     </td>
                                      <td>
                                          @Html.DisplayFor(modelItem => item.Title)
                                      </td>
@@ -65,9 +72,16 @@
                                      <td>
                                          @Html.DisplayFor(modelItem => item.Phone)
                                      </td>
-                                     <td>
-                                         @Html.DisplayFor(modelItem => item.Score)
-                                     </td>                                     
+                                     if (urun != null)
+                                     {
+                                         <td>
+                                            @Html.DisplayFor(modelItem => urun.Name)
+                                         </td>  
+                                     }
+                                     else
+                                     {
+                                        <td></td>
+                                     }
                                      <td>
                                          @(item.IsApprove ? Html.Raw("<a class='text-success'>Onaylandı</a>") : Html.Raw("<a class='text-danger'>Onaylanmadı</a>"))
                                      </td>

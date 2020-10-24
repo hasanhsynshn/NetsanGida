@@ -2,6 +2,10 @@
 @{
     ViewBag.Title = "Anasayfa";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    var urunler = NetsanGida.Bll.bProduct.GetAll();
+    var kategoriler = NetsanGida.Bll.bCategory.GetAll();
+    var yorumlar = NetsanGida.Bll.bComment.GetAll();
+    var duyurular = NetsanGida.Bll.bAnnouncement.GetAll();
 }
 
     <div class="content-wrapper">
@@ -21,7 +25,7 @@
                     <div class="col-lg-3 col-6">
                         <div class="small-box bg-info">
                             <div class="inner">
-                                <h3>@*@ViewBag.UserCount*@</h3>
+                                <h3>@yorumlar.Count</h3>
                                 <p>Yorum</p>
                             </div>
                             <div class="icon">
@@ -33,7 +37,7 @@
                     <div class="col-lg-3 col-6">
                         <div class="small-box bg-success">
                             <div class="inner">
-                                <h3>@*@ViewBag.SikayetCount*@</h3>
+                                <h3>@duyurular.Count</h3>
 
                                 <p>Duyuru</p>
                             </div>
@@ -46,7 +50,7 @@
                     <div class="col-lg-3 col-6">
                         <div class="small-box bg-warning">
                             <div class="inner">
-                                <h3>@*@ViewBag.KategoriCount*@</h3>
+                                <h3>@kategoriler.Count</h3>
 
                                 <p>Kategori</p>
                             </div>
@@ -59,7 +63,7 @@
                     <div class="col-lg-3 col-6">
                         <div class="small-box bg-danger">
                             <div class="inner">
-                                <h3>@*@ViewBag.BlogCount*@</h3>
+                                <h3>@urunler.Count</h3>
                                 <p>Ürün</p>
                             </div>
                             <div class="icon">

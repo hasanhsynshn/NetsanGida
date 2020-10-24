@@ -1,0 +1,4 @@
+Namık Kemal Üniversitesi Bilgisayar Mühendisliği bölümünü 2019 yılında tamamlamış olup daha sonra İsmek .net mvc ve .net core eğitim programlarına katılarak yazılım becerilerimi ilerletme fırsatı buldum. Design Patternler, ORM araçları, JavaScript ve kütüphaneleri (JQuery,,Angular etc), OOP, MSSQL,Repository, UnitofWork gibi teknolojileri aktif olarak kullanmaktayım. Solid prensiplerine uygun, best practice kod yazmaya özen gösteren bir geliştiriciyim. MVC üzerine çeşitli uygulamalarım mevcuttur.  
+
+NOT:  Çalışmak istediğim pozisyonda para durumu 2.planda olup amacım sektör tecrübesi edinerek  bu alanda uzmanlaşmak istiyorum.
+Ben bu işte yer almayı çok istiyorum. Eğer bana bu konuda fırsat verirseniz size kendi becerilerimi gösterebilirim. 

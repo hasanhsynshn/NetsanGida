@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewBag.Title = "Galeri";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- HEADING-BANNER START -->
+<div class="gallery-banner-area overlay-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="heading-banner">
+                    <div class="heading-banner-title">
+                        <h2>GALERİ</h2>
+                    </div>
+                    <div class="breadcumbs pb-15">
+                        <ul>
+                            <li><a href="/">Anasayfa</a></li>
+                            <li>GALERİ</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- HEADING-BANNER END -->
+<!-- PRODUCT-AREA START -->
+<div class="product-area pt-80 pb-80 product-style-2">
+    <div class="container">
+        <!-- Shop-Content End -->
+        <div class="shop-content">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <!-- Single-product start -->
+                        @for (int i = 1; i <= 24; i++)
+                        {
+                            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                                <div class="single-product">
+                                    <div class="product-img">                                       
+                                        <a href="~/latest/img/netsu/@(i).JPG?width=300&height=300&bgcolor=fff&format=jpg" data-lightbox="roadtrip"><img src="~/latest/img/netsu/@(i).JPG?width=270&height=270&bgcolor=fff&format=jpg" alt="" /></a>
+                                    </div>                                   
+                                </div>
+                            </div>
+                        }
+                        <!-- Single-product end -->
+                    </div>
+                </div>                
+            </div>
+        </div>
+        <!-- Shop-Content End -->
+    </div>
+</div>
+<!-- PRODUCT-AREA END -->

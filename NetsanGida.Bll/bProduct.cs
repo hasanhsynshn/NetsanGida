@@ -5,9 +5,11 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.Processing;
+
 
 namespace NetsanGida.Bll
 {
@@ -22,50 +24,110 @@ namespace NetsanGida.Bll
             }
             return list;
         }
+
         public static Product GetById(int id)
         {
             var data = new Product();
-            using (ApplicationDbContext db = new ApplicationDbContext()) 
+            using (ApplicationDbContext db = new ApplicationDbContext())
             {
-                data = db.Products.Where(x => x.ProductId == id).FirstOrDefault();
+                data = db.Products.FirstOrDefault(x => x.ProductId == id);
             }
             return data;
         }
+
+        public static Product GetByUrl(string urunUrl)
+        {
+            var data = new Product();
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
+                data = db.Products.FirstOrDefault(x => x.Url == urunUrl);
+            }
+            return data;
+        }
+
+        public static List<Product> GetByCategoryId(int categoryId)
+        {
+            var list = new List<Product>();
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
+                list = db.Products.Where(x => x.CategoryId == categoryId && x.IsActive == false).ToList();
+            }
+            return list;
+        }
+
+        public static Category GetByCatUrl(string kategoriUrl)
+        {
+            var data = new Category();
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
+                data = db.Categories.FirstOrDefault(x => x.Url == kategoriUrl);
+            }
+            return data;
+        }
+
+        public static List<Product> GetByCategoryUrl(string kategoriUrl)
+        {
+            var list = new List<Product>();
+            var data = GetByCatUrl(kategoriUrl);
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
+                list = db.Products.Where(x => x.CategoryId == data.CategoryId && x.IsActive == false).ToList();
+            }
+            return list;
+        }
+
+        public static List<Product> GetByCategoryName(string categoryName)
+        {
+            var list = new List<Product>();
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
+                list = db.Products.Where(x => x.Name == categoryName && x.IsActive == false).ToList();
+            }
+            return list;
+        }
+
+        public static List<Product> GetByProductMunzur()
+        {
+            var list = new List<Product>();
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
+                list = db.Products.Where(x => x.CategoryId == 8).ToList();
+            }
+            return list;
+        }
+
         public static Product Add(Product model)
         {
             model.CreateDate = DateTime.Now;
             model.Url = Tool.CreateUrlSlug(model.Name);
-            using (ApplicationDbContext db = new ApplicationDbContext()) 
+            using (ApplicationDbContext db = new ApplicationDbContext())
             {
-                db.Entry(model).State = EntityState.Added;
+                db.Products.Add(model);
                 db.SaveChanges();
             }
             return model;
         }
+
         public static Product Update(Product model)
         {
-            model.UpdateDate = DateTime.Now;
-            if (model.Url == null)
-            {
-                model.Url = Tool.CreateUrlSlug(model.Name);
-            }            
-            using (ApplicationDbContext db=new ApplicationDbContext())
+            model.CreateDate = DateTime.Now;
+            model.Url = Tool.CreateUrlSlug(model.Name);
+            using (ApplicationDbContext db = new ApplicationDbContext())
             {
                 db.Entry(model).State = EntityState.Modified;
                 db.SaveChanges();
             }
             return model;
         }
+
         public static void Delete(int id)
         {
-            using (ApplicationDbContext db = new ApplicationDbContext()) 
+            using (ApplicationDbContext db = new ApplicationDbContext())
             {
                 var data = db.Products.Find(id);
                 data.IsActive = true;
-                data.DeleteDate = DateTime.Now;
                 db.SaveChanges();
             }
         }
-
     }
 }

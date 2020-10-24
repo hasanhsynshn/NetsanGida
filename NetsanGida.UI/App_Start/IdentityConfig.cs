@@ -28,7 +28,31 @@ namespace NetsanGida.UI
                 return sonuc;
             });
         }
+
+        public static string AppSetting(string key)
+        {
+            try
+            {
+                return System.Configuration.ConfigurationManager.AppSettings[key];
+            }
+            catch (Exception)
+            {
+                return "";
+            }
+        }
+
+        public static Task<DeliveryResult_Tran> TransactionalEmail_WithSpecial(string Subject, string Body, string To)
+        {
+            return Task.Factory.StartNew(() =>
+            {
+                EmailDelivery emailDelivery = new EmailDelivery();
+                var sonuc = emailDelivery.DeliveryTransactionalEmail_WithSpecial(AppSetting("AccessToken"), AppSetting("FromName"), AppSetting("FromAdress"), AppSetting("ReplyTo"), Subject, Body, To);
+                return sonuc;
+            });
+        }
     }
+
+    
 
     public class SmsService : IIdentityMessageService
     {

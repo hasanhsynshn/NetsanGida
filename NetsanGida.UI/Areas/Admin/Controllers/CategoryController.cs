@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace NetsanGida.UI.Areas.Admin.Controllers
 {
+    [Authorize]
     public class CategoryController : Controller
     {
         public ActionResult List()
@@ -55,19 +56,6 @@ namespace NetsanGida.UI.Areas.Admin.Controllers
             var data = bCategory.GetById(id);
             return View(data);
         }
-
-        //public ActionResult UpdateSubCategory(int parentId)
-        //{
-        //    var data = bCategory.GetByParentId(parentId);
-        //    return View(data);
-        //}
-
-        //[HttpPost]
-        //public ActionResult UpdateSubCategory(Category model)
-        //{
-        //    bCategory.Update(model);
-        //    return RedirectToAction(nameof(List));
-        //}
 
         [HttpPost]
         public JsonResult Update(Category model)

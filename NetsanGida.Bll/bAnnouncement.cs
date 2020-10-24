@@ -11,14 +11,24 @@ namespace NetsanGida.Bll
 {
     public static class bAnnouncement
     {
+
         public static List<Announcement> GetAll()
         {
             var list = new List<Announcement>();
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
-                list = db.Announcements.Where(x => x.IsActive == false).ToList();
+                list = db.Announcements.ToList();
             }
             return list;
+        }
+        public static Announcement GetAnnouncement()
+        {
+            var data = new Announcement();
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
+                data = db.Announcements.FirstOrDefault(x => x.IsActive == false);
+            }
+            return data;
         }
 
         public static Announcement GetById(int id)

@@ -1,31 +1,176 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Ana Sayfa";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var urunler = NetsanGida.Bll.bProduct.GetAll();
+    var kategoriler = NetsanGida.Bll.bCategory.GetAll();
 }
-
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
-
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+<!-- SLIDER-BANNER-AREA START -->
+<div class="slider-area">
+    <div class="slider-active owl-dot-style owl-carousel ">
+        <div class="single-slider bg-img slider-height" style="background:url(/latest/img/slider/slider-1/munzur1.jpg) no-repeat center center; background-size:100% 100%; ">
+           
+        </div>
+        
+        
+        <div class="single-slider bg-img slider-height" style="background:url(/latest/img/slider/slider-1/yagcilar-gida02.jpg) no-repeat center center; background-size:95% 80%;">
+           
+        </div>
     </div>
 </div>
+<!-- PRODUCT-AREA START -->
+<div class="product-area pt-80 pb-35">
+    <div class="container">
+        <!-- Section-title start -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title text-center">
+                    <h2 class="title-border">Ürünlerimiz</h2>
+                </div>
+            </div>
+        </div>
+        <!-- Section-title end -->
+        <div class="row cus-row-30">
+            <div class="product-slider arrow-left-right">
+                <!-- Single-product start -->
+                @foreach (var item in kategoriler)
+                {
+                    if (item.Name == "Su")
+                    {
+                        var sukat = NetsanGida.Bll.bCategory.GetAllProductCategory(item.CategoryId);
+                        foreach (var k in sukat)
+                        {
+                            var urunList = NetsanGida.Bll.bProduct.GetByCategoryId(k.CategoryId);
+                            foreach (var product in urunList)
+                            {
+                                <div class="single-product col-lg-12">
+                                    <div class="product-img">
+                                        <a href="/urun/@product.Url"><img src="@(product != null ? product.Media : "")?width=270&height=270&bgcolor=fff&format=jpg" alt="" /></a>
+                                    </div>
+                                    <div class="product-info clearfix">
+                                        <div class="fix">
+                                            <h4 class="post-title floatleft"><a href="/urun/@product.Url">@product.Name</a></h4>
+                                        </div>
+                                        <div class="fix">
+                                            <span class="pro-price floatleft">@product.Price ₺</span>
+                                            <span class="pro-rating floatright">
+                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
+                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
+                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
+                                                <a href="#"><i class="zmdi zmdi-star-half"></i></a>
+                                                <a href="#"><i class="zmdi zmdi-star-half"></i></a>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    }
+                }
+                <!-- Single-product end -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- PRODUCT-AREA END -->
+<!-- DISCOUNT-PRODUCT START -->
+<div class="discount-product-area">
+    <div class="container">
+        <div class="row">
+            <div class="discount-product-slider dots-bottom-right">
+                <!-- single-discount-product start -->
+               
+                    <div class="col-lg-12">
+                        <div class="discount-product">
+                            <div class="discount-img">
+                                <img src="~/latest/img/slider/slider-2/inisdibi-dogal-maden-suyu-6-adet-2130-jpg.jpeg" alt="" />
+
+
+                            </div>
+                            <div class="discount-img">
+                                <img src="~/latest/img/slider/slider-2/yagcilar-gida02.jpg" alt="" />
+
+
+                            </div>
+                            <div class="discount-img-brief">
+                                <div class="discount-info">
+                                    <h1 class="text-dark-red hidden-xs"></h1>
+                                    <p class="hidden-xs"></p>
+                                    @*<a href="#" class="button-one font-16px style-3 text-uppercase mt-5" data-text="Buy now">Buy now</a>*@
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+                <!-- single-discount-product end -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- DISCOUNT-PRODUCT END -->
+<!-- PURCHASE-ONLINE-AREA START -->
+<div class="purchase-online-area pt-80">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title text-center">
+                    <h2 class="title-border">Meşrubatlar</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <!-- Nav tabs -->
+                @*<ul class="tab-menu clearfix">
+                    <li class="active"><a href="#new-arrivals" data-toggle="tab">New Arrivals</a></li>
+                    <li><a href="#best-seller" data-toggle="tab">Best Seller </a></li>
+                    <li><a href="#most-view" data-toggle="tab">Most View </a></li>
+                    <li><a href="#discounts" data-toggle="tab">Discounts</a></li>
+                </ul>*@
+            </div>
+            <div class="col-lg-12">
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div class="tab-pane active" id="new-arrivals">
+                        <div class="row">
+                            <!-- Single-product start -->
+                            @foreach (var item in kategoriler)
+                            {
+                                if (item.Name == "Meşrubat")
+                                {
+                                    var meskat = NetsanGida.Bll.bCategory.GetAllProductCategory(item.CategoryId);
+                                    foreach (var m in meskat)
+                                    {
+                                        var urunList = NetsanGida.Bll.bProduct.GetByCategoryId(m.CategoryId);
+                                        foreach (var product in urunList.OrderBy(r => Guid.NewGuid()).Take(8))
+                                        {
+                                            <div class="single-product col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                                                <div class="product-img">
+                                                    @if (product.CreateDate >= DateTime.Now.AddDays(-7))
+                                                    {
+                                                        <span class="pro-label new-label">Yeni</span>
+                                                    }
+
+                                                    <a href="/urun/@product.Url"><img src="@(product != null ? product.Media : "")?width=270&height=270&bgcolor=fff&format=jpg" alt="" /></a>
+                                                </div>
+                                                <div class="product-info clearfix">
+                                                    <div class="fix">
+                                                        <h4 class="post-title floatleft"><a href="/urun/@product.Url">@product.Name</a></h4>
+                                                    </div>
+                                                    <div class="fix">
+                                                        <span class="pro-price floatleft">@product.Price ₺</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+                                    }
+                                }
+                            }
+                            <!-- Single-product end -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- PURCHASE-ONLINE-AREA END -->

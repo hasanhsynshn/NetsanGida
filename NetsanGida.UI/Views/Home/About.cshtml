@@ -1,7 +1,47 @@
 ﻿@{
-    ViewBag.Title = "About";
+    ViewBag.Title = "Hakkında";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
-
-<p>Use this area to provide additional information.</p>
+<!-- HEADING-BANNER START -->
+<div class="heading-banner-area overlay-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="heading-banner">
+                    <div class="heading-banner-title">
+                        <h2>Hakkında</h2>
+                    </div>
+                    <div class="breadcumbs pb-15">
+                        <ul>
+                            <li><a href="index.html">Anasayfa</a></li>
+                            <li>Hakkında</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- HEADING-BANNER END -->
+<!-- ABOUT-US-AREA START -->
+<div class="about-us-area  pt-80 pb-80">
+    <div class="container">
+        <div class="about-us bg-white">
+            <div class="row">
+                <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12">
+                    @*<div class="about-photo">
+                        <img src="~/latest/img/bg/about.png" alt="" />
+                    </div>*@
+                </div>
+                <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12">
+                    <div class="about-brief bg-dark-white">
+                        <h4 class="title-1 title-border text-uppercase mb-30">NetSu Hakkında</h4>
+                        <p>NTS Grup ailesi olarak tüm ticari faaliyetlerimiz de güler yüzlü, hızlı ve kaliteli hizmet sunma gayesindeyiz.</p>
+                        <p>Bu amaç doğrultusun da bünyemiz de yeni doğmuş olan NETSU firmamızda kaliteli doğal ve sağlıklı “Munzur Su” ürünlerimizi Güngören-Merter bölgesinde sizlere ulaştırmayı amaçlamaktayız.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ABOUT-US-AREA END -->

@@ -1,0 +1,180 @@
+﻿@model NetsanGida.Model.Product
+
+@{
+    ViewBag.Title = "Ürün Ekle";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    var categories = NetsanGida.Bll.bCategory.GetAllLowCategories();
+}
+
+<script src="~/Scripts/ckeditor/ckeditor.js"></script>
+<script src="~/Scripts/ckeditor/config.js"></script>
+<script src="~/CKFinderScripts/ckfinder.js"></script>
+<link href="~/Areas/Admin/AdminLTE-master/plugins/sweetalert2/sweetalert2.min.css" rel="stylesheet" />
+<script src="~/Areas/Admin/AdminLTE-master/plugins/sweetalert2/sweetalert2.all.min.js"></script>
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Ürün</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="/Admin/Home/Index">Anasayfa</a></li>
+                        <li class="breadcrumb-item active">Ürün Ekle</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <!-- /.container-fluid -->
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        @using (Html.BeginForm("Add", "Product", FormMethod.Post, new { id = "urunForm" }))
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <div class="form-horizontal">
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">Adı</label>
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">Açıklama</label>
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">Resim</label>
+                                    <div class="col-md-10">
+                                        <button class="btn btn-info" type="button" onclick="selectFileWithCKFinder('Media')"><i class="fa fa-upload"></i></button>
+                                        @Html.TextBox("Media", null, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Media, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>                                
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">Fiyat</label>
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">Toplam Fiyat</label>
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.TotalPrice, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.TotalPrice, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">KDV</label>
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.VAT, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.VAT, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">Marka</label>
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Brand, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Brand, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">Model</label>
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Model, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Model, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">Stok Miktarı</label>
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Stock, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Stock, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">Kategori Adı</label>
+                                    <div class="col-md-10">
+                                        @Html.DropDownListFor(model => model.CategoryId, new SelectList(categories, "CategoryId", "Name"), new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-md-10">
+                                        <button type="submit" class="btn btn-primary">Ekle</button>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<script>
+    var description = CKEDITOR.replace('Description');
+    CKFinder.setupCKEditor(description);
+</script>
+<script src="~/Areas/Admin/AdminLTE-master/plugins/jquery/jquery.min.js"></script>
+<script>
+    $('#urunForm').on('submit', function (e) {
+        e.preventDefault();
+        var form = $('#urunForm')[0];
+        var data = new FormData(form);
+        data.set('Description', CKEDITOR.instances['Description'].getData());
+        $.ajax({
+            url: '/Admin/Product/Add',
+            type: 'POST',
+            data: data,
+            processData: false,
+            contentType: false,
+            cache: false,
+            timeout: 600000,
+            success: function (result) {
+                if (result.isSuccess) {
+                    Swal.fire(
+                        'Ürün Ekleme',
+                        result.message,
+                        'success'
+                    )
+                    setTimeout(function () {
+                        window.location.href = "/Admin/Product/List";
+                    }, 2000);
+                }
+                else {
+                    Swal.fire(
+                        'Ürün Ekleme',
+                        result.message,
+                        'danger'
+                    )
+                }
+            }
+        })
+    });
+</script>

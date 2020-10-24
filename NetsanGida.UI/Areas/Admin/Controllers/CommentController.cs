@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace NetsanGida.UI.Areas.Admin.Controllers
 {
+    [Authorize]
     public class CommentController : Controller
     {
         public ActionResult List()

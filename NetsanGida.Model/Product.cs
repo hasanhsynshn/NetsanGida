@@ -17,12 +17,12 @@ namespace NetsanGida.Model
         public string Description { get; set; }
         public string Media { get; set; }
         public string Url { get; set; }
-        public double Price { get; set; }
-        public double TotalPrice { get; set; }
-        public double VAT { get; set; }
+        public double? Price { get; set; }
+        public double? TotalPrice { get; set; }
+        public double? VAT { get; set; }
         public string Brand { get; set; }
         public string Model { get; set; }
-        public int Stock { get; set; }
+        public int? Stock { get; set; }
         public int? CategoryId { get; set; }
         public bool IsActive { get; set; } = false;
         public DateTime? CreateDate { get; set; }

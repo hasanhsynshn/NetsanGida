@@ -1,17 +1,134 @@
 ﻿@{
-    ViewBag.Title = "Contact";
+    ViewBag.Title = "İletişim";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+<style>
+    .harita {
+        position: relative;
+        padding-bottom: 75%;
+        height: 0;
+        overflow: hidden;
+    }
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
+        .harita iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100% !important;
+            height: 100% !important;
+        }
+</style>
+<script src="~/Areas/Admin/AdminLTE-master/plugins/sweetalert2/sweetalert2.all.min.js"></script>
+<!-- HEADING-BANNER START -->
+<div class="heading-banner-area overlay-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="heading-banner">
+                    <div class="heading-banner-title">
+                        <h2>İLETİŞİM BİLGİLERİ</h2>
+                    </div>
+                    <div class="breadcumbs pb-15">
+                        <ul>
+                            <li><a href="#">Anasayfa</a></li>
+                            <li>İLETİŞİM</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- HEADING-BANNER END -->
+<!-- contact-us-AREA START -->
+<div class="contact-us-area  pt-80 pb-80">
+    <div class="container">
+        <div class="contact-us customer-login bg-white">
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
+                    <div class="contact-details">
+                        <h4 class="title-1 title-border text-uppercase mb-30">İLETİŞİM BİLGİLERİ</h4>
+                        <ul>
+                            <li>
+                                <i class="zmdi zmdi-pin"></i>
+                                <span>Ahmet Nafiz Gürman Mahallesi </span>
+                                <span>Kınalı Tepe Sokak No:25</span>
+                                <span style="text-align:center; margin-left:-64px;">Güngören - Merter, İstanbul</span>
+                            </li>
+                            <li>
+                                <i class="zmdi zmdi-phone"></i>
+                                <span>0212 505 02 04</span>
+                                <span>0551 655 35 25</span>
+                            </li>
+                            <li>
+                                <i class="zmdi zmdi-email"></i>
+                                <span>netsangroups@gmail.com</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="send-message mt-60">
+                        <form id="contact-form" action="/Home/Contact" method="post">
+                            <h4 class="title-1 title-border text-uppercase mb-30">Mesaj Gönder</h4>
+                            <input type="text" name="namesurname" placeholder="Ad - Soyad" required />
+                            <input type="text" name="email" placeholder="Email" required />
+                            <input type="text" name="tel" placeholder="Telefon No" />
+                            <input type="text" name="subject" title="Konu" placeholder="Başlık" required />
+                            <textarea class="custom-textarea" name="message" placeholder="Mesajınız" required></textarea>
+                            <button id="btn_Submit" class="button-one submit-button mt-20" data-text="Mesajı Gönder" type="button">Mesajı Gönder</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-8 col-sm-7 col-xs-12 mt-xs-30">
+                    <div class="harita">
+                        
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3010.9472578633417!2d28.88782856276092!3d41.00452758134673!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cabb14107d3319%3A0x27b4b3d8280e55bd!2zQWJkdXJyYWhtYW4gTmFmaXogR8O8cm1hbiwgS8SxbmFsxLF0ZXBlIFNrLiBObzoyNSwgMzQxNzMgR8O8bmfDtnJlbi_EsHN0YW5idWw!5e0!3m2!1str!2str!4v1596742514209!5m2!1str!2str" width="600" height="450" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ABOUT-US-AREA END -->
+<script src="~/latest/js/vendor/jquery-1.12.4.min.js"></script>
 
-<address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+<script>
+    //function ContactFormSubmit()
+    $('#btn_Submit').click(function () {
+        var form = $('#contact-form')[0];
+        var data = new FormData(form);
+
+
+        $.ajax({
+            url: '/Home/Contact',
+            type: 'POST',
+            enctype: 'multipart/form-data',
+            data: data,
+            processData: false,
+            contentType: false,
+            cache: false,
+            timeout: 600000,
+            success: function (result) {
+                if (result) {
+                    Swal.fire({
+                        title: "İletişim Formu",
+                        text: "Mesajınız başarıyla gönderilmiştir.",
+                        icon: 'success',
+                        confirmButtonText: 'OK',
+                        confirmButtonColor: '#3085d6'
+                    });
+                    $('#contact-form')[0].reset();
+                }
+                else {
+                    Swal.fire({
+                        title: "İletişim Formu",
+                        text: "Gerekli alanları lütfen doldurun.",
+                        icon: 'danger',
+                        confirmButtonText: 'OK',
+                        confirmButtonColor: '#d33'
+                    });
+                }
+
+            }
+        });
+    });
+</script>

@@ -11,12 +11,14 @@ namespace NetsanGida.Model
     {
         [Key]
         public int CommentId { get; set; }
+        public string NameSurname { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public bool IsApprove { get; set; } = false;
         public int Score { get; set; }
         public string Mail { get; set; }
         public int Phone { get; set; }
+        public int? ProductId { get; set; }
         public bool IsActive { get; set; }
         public DateTime? CreateDate { get; set; }
         public DateTime? UpdateDate { get; set; }

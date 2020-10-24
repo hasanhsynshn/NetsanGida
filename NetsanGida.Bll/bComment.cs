@@ -20,6 +20,17 @@ namespace NetsanGida.Bll
             }
             return list;
         }
+
+        public static List<Comment> GetAllApproves(int productId)
+        {
+            var list = new List<Comment>();
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
+                list = db.Comments.Where(x => x.IsActive == false && x.ProductId == productId && x.IsApprove == true).ToList();
+            }
+            return list;
+        }
+
         public static Comment GetById(int id)
         {
             var data = new Comment();

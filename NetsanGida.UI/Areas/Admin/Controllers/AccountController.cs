@@ -136,8 +136,7 @@ namespace NetsanGida.UI.Areas.Admin.Controllers
         }
 
         //
-        // GET: /Account/Register
-        [AllowAnonymous]
+        // GET: /Account/Register    
         public ActionResult Register()
         {
             return View();
@@ -145,8 +144,7 @@ namespace NetsanGida.UI.Areas.Admin.Controllers
 
         //
         // POST: /Account/Register
-        [HttpPost]
-        [AllowAnonymous]
+        [HttpPost]      
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {

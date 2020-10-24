@@ -32,6 +32,36 @@ namespace NetsanGida.Bll
             return list;
         }
 
+        public static List<Category> GetAllProductCategory(int id)
+        {
+            var list = new List<Category>();
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
+                list = db.Categories.Where(x => x.IsActive == false && x.ParentId == id).ToList();
+            }
+            return list;
+        }
+
+        public static List<Category> GetAllLowCategories()
+        {
+            var list = new List<Category>();
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
+                list = db.Categories.Where(x => x.IsActive == false && x.ParentId != 0).ToList();
+            }
+            return list;
+        }
+
+        public static List<Category> GetLowCategories(int parentId)
+        {
+            var list = new List<Category>();
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
+                list = db.Categories.Where(x => x.IsActive == false && x.ParentId == parentId).ToList();
+            }
+            return list;
+        }
+
         public static Category GetById(int id)
         {
             var data = new Category();
@@ -41,6 +71,18 @@ namespace NetsanGida.Bll
             }
             return data;
         }
+
+        public static Category GetByCategoryId(int id)
+        {
+            var data = new Category();
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
+                data = db.Categories.FirstOrDefault(x => x.ParentId == id);
+            }
+            return data;
+        }
+
+
 
         public static Category GetByParentId(int id)
         {
